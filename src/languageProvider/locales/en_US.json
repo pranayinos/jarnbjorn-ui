@@ -80,7 +80,14 @@
   "sidebar.youtubeSearch": "Youtube Search",
 
   "sidebar.delivery": "Delivery",
+  "sidebar.newDelivery": "New Delivery",
+  "sidebar.deliveries": "Deliveries",
+  "sidebar.invoices": "Delivery Invoices",
   "sidebar.accounts": "Accounts",
+  "sidebar.tools": "Business Tools",
+  "sidebar.settings": "Settings",
+  "sidebar.wallet": "Wallet",
+
 
   "languageSwitcher.label": "Change Language",
   "themeSwitcher": "Theme Switcher",

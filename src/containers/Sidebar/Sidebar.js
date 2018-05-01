@@ -160,44 +160,64 @@ class Sidebar extends Component {
               selectedKeys={app.current}
               onOpenChange={this.onOpenChange}
             >
-              {options.map(singleOption =>
-                this.getMenuItem({ submenuStyle, submenuColor, singleOption })
-              )}
-              {/* Demo Menu */}
-              <SubMenu
-                key="sub1"
+               <SubMenu
+                key="delivery"
                 title={
                   <span className="isoMenuHolder" style={submenuColor}>
-                    <i className="ion-android-options" />
+                    <i className="ion-android-cart" />
                     <span className="nav-text">
-                      <IntlMessages id="sidebar.menuLevels" />
+                      <IntlMessages id="sidebar.delivery" />
                     </span>
                   </span>
                 }
               >
-                <MenuItemGroup
-                  key="g1"
-                  title={<IntlMessages id="sidebar.item1" />}
-                >
-                  <Menu.Item style={submenuStyle} key="1">
-                    <IntlMessages id="sidebar.option1" />
+                  <Menu.Item style={submenuStyle} key="delivery">
+                    <Link to="/dashboard/delivery" >
+                      <IntlMessages id="sidebar.newDelivery" />
+                    </Link>
                   </Menu.Item>
-                  <Menu.Item style={submenuStyle} key="2">
-                    <IntlMessages id="sidebar.option2" />
+                  <Menu.Item style={submenuStyle} key="deliveries">
+                    <Link to="/dashboard/deliveries" >
+                      <IntlMessages id="sidebar.deliveries" />
+                    </Link>
                   </Menu.Item>
-                </MenuItemGroup>
-                <MenuItemGroup
-                  key="g2"
-                  title={<IntlMessages id="sidebar.item2" />}
-                >
-                  <Menu.Item style={submenuStyle} key="3">
-                    <IntlMessages id="sidebar.option3" />
+                  <Menu.Item style={submenuStyle} key="invoices">
+                    <Link to="/dashboard/invoices" >
+                      <IntlMessages id="sidebar.invoices" />
+                    </Link>
                   </Menu.Item>
-                  <Menu.Item style={submenuStyle} key="4">
-                    <IntlMessages id="sidebar.option4" />
-                  </Menu.Item>
-                </MenuItemGroup>
               </SubMenu>
+              <SubMenu
+                key="accounts"
+                title={
+                  <span className="isoMenuHolder" style={submenuColor}>
+                    <i className="ion-ios-person-outline" />
+                    <span className="nav-text">
+                      <IntlMessages id="sidebar.accounts" />
+                    </span>
+                  </span>
+                }
+              >
+                  <Menu.Item style={submenuStyle} key="tools">
+                    <Link to="/dashboard/blank_page" >
+                      <IntlMessages id="sidebar.tools" />
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item style={submenuStyle} key="settings">
+                    <Link to="/dashboard/blank_page" >
+                      <IntlMessages id="sidebar.settings" />
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item style={submenuStyle} key="wallet">
+                    <Link to="/dashboard/blank_page" >
+                      <IntlMessages id="sidebar.wallet" />
+                    </Link>
+                  </Menu.Item>
+              </SubMenu>
+
+               {options.map(singleOption =>
+                this.getMenuItem({ submenuStyle, submenuColor, singleOption })
+              )}
             </Menu>
           </Scrollbars>
         </Sider>
