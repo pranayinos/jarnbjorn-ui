@@ -1,55 +1,66 @@
 import React, { Component } from 'react';
 import Tabs, { TabPane } from '../../../components/uielements/tabs';
+import LayoutWrapper from "../../../components/utility/layoutWrapper.js";
 import LayoutContentWrapper from '../../../components/utility/layoutWrapper.js';
 import TableDemoStyle from './demo.style';
-import fakeData from '../fakeData';
+import delivery from './delivery';
 import { tableinfos } from './configs';
 import * as TableViews from './tableViews/';
+import InputField from '../../Forms/Input';
+import { Col, Row, Icon } from 'antd';
+import Form from '../../../components/uielements/form';
+import Input from '../../../components/uielements/input';
+import PageHeader from '../../../components/utility/pageHeader';
+import IntlMessages from '../../../components/utility/intlMessages';
+import PickupForm from './forms/PickupForm';
+import DeliveryForm from './forms/DeliveryForm';
+import Box from '../../../components/utility/box';
+import ContentHolder from '../../../components/utility/contentHolder';
 
-const dataList = new fakeData(10);
+const dataList = new delivery(2);
+const FormItem = Form.Item;
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 5 }
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 12 }
+  }
+};
 
 export default class AntTable extends Component {
   renderTable(tableInfo) {
     let Component;
-    switch (tableInfo.value) {
-      case 'sortView':
-        Component = TableViews.SortView;
-        break;
-      case 'filterView':
-        Component = TableViews.FilterView;
-        break;
-      case 'editView':
-        Component = TableViews.EditView;
-        break;
-      case 'groupView':
-        Component = TableViews.GroupView;
-        break;
-      case 'customizedView':
-        Component = TableViews.CustomizedView;
-        break;
-      default:
-        Component = TableViews.SimpleView;
-    }
+    Component = TableViews.SimpleView;
     return <Component tableInfo={tableInfo} dataList={dataList} />;
   }
   render() {
+    const colStyle = {
+      marginBottom: '16px'
+    };
     return (
-      <LayoutContentWrapper>
-        <TableDemoStyle className="isoLayoutContent">
-          <Tabs className="isoTableDisplayTab">
-            
-              <TabPane tab="Active" key="active">
-                {this.renderTable(tableinfos[0])}
-              </TabPane>
-              <TabPane tab="Scheduled" key="scheduled">
-                {this.renderTable(tableinfos[0])}
-              </TabPane>
-              <TabPane tab="Past" key="past">
-                {this.renderTable(tableinfos[0])}
-              </TabPane>
-          </Tabs>
-        </TableDemoStyle>
-      </LayoutContentWrapper>
+      <LayoutWrapper>
+        <Col md={8} sm={8} xs={16} style={colStyle}>
+          {/* <LayoutWrapper> */}
+            <PageHeader>Create Order</PageHeader>
+            <Box>
+              <PickupForm />
+              <DeliveryForm />
+            </Box>
+          {/* </LayoutWrapper> */}
+        </Col>
+        <Col md={16} sm={16} xs={32} style={colStyle}>
+          <LayoutContentWrapper>
+            <TableDemoStyle className="isoLayoutContent">
+
+              {this.renderTable(tableinfos[0])}
+
+            </TableDemoStyle>
+          </LayoutContentWrapper>
+        </Col>
+      </LayoutWrapper>
     );
   }
 }

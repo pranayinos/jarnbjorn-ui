@@ -7,7 +7,7 @@ const tableData = JSON.parse(
   "email": "Lonny79@hotmail.com",
   "firstName": "Emelia",
   "lastName": "Gislason",
-  "street": "Kulas Shoals",
+  "street": "Flat 103, Maa Gokulayam Appartments, Whitefeild Bengaluru",
   "zipCode": "52677",
   "date": "2016-09-27T08:18:56.302Z",
   "bs": "back-end optimize e-markets",

@@ -624,6 +624,26 @@
   "antTable.title.street": "Street",
   "antTable.title.email": "Email",
   "antTable.title.dob": "DOB",
+
+  "antTable.title.invoiceId": "Invoice ID",
+  "antTable.title.duration": "Duration",
+  "antTable.title.createdOn": "Created On",
+  "antTable.title.invoiceAmount": "Invoice Amount(o)",
+  "antTable.title.download": "Download",
+
+  "antTable.title.referenceId": "Reference ID",
+  "antTable.title.activityTime": "Activity Time",
+  "antTable.title.amount": "Amount (₹)",
+  "antTable.title.channel": "Channel",
+
+  "antTable.title.orderId": "Order ID",
+  "antTable.title.dateNTime": "Date & Time",
+  "antTable.title.deliveryAddress": "Delivery Address",
+  "antTable.title.deliveryStatus": "Status",
+  "antTable.title.driverDetails": "Driver Details",
+  "antTable.title.return": "Return",
+  "antTable.title.cod": "COD",
+
   "Map.leaflet.basicTitle": "Basic Map",
   "Map.leaflet.basicMarkerTitle": "Basic Map(With Default Marker",
   "Map.leaflet.leafletCustomMarkerTitle": "Basic Map(With Custom Icon Marker)",

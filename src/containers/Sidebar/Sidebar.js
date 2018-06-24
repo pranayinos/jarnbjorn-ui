@@ -215,9 +215,9 @@ class Sidebar extends Component {
                   </Menu.Item>
               </SubMenu>
 
-               {options.map(singleOption =>
+               {/* {options.map(singleOption =>
                 this.getMenuItem({ submenuStyle, submenuColor, singleOption })
-              )}
+              )} */}
             </Menu>
           </Scrollbars>
         </Sider>

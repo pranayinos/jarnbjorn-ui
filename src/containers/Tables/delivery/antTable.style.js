@@ -26,10 +26,18 @@ const TableWrapper = styled(Table)`
     }
   }
 
-  .ant-table-thead > tr > th,
-  .ant-table-tbody > tr > td {
+  .ant-table-thead > tr > th{
     padding: 16px 15px;
     white-space: nowrap;
+    text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+  .ant-table-tbody > tr > td {
+    padding: 16px 15px;
+    white-space: normal;
     text-align: ${props => (props['data-rtl'] === 'rtl' ? 'right' : 'left')};
 
     p {

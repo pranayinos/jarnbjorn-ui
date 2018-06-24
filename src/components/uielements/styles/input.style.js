@@ -58,7 +58,7 @@ const InputWrapper = ComponentName => styled(ComponentName)`
 `;
 const InputGroupWrapper = ComponentName => styled(ComponentName)`
   &.ant-input-group {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 
     .ant-select-auto-complete {
       margin-right: ${props => (props['data-rtl'] === 'rtl' ? '-1px' : '0')};

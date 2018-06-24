@@ -20,7 +20,7 @@ export default class AntTable extends Component {
           {this.renderTable(tableinfos[0])}
         </TableDemoStyle>
         <TableDemoStyle className="isoLayoutContent">
-          {this.renderTable(tableinfos[0])}
+          {this.renderTable(tableinfos[1])}
         </TableDemoStyle>
       </LayoutContentWrapper>
     );

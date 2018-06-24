@@ -10,7 +10,9 @@ export default class extends Component {
         pagination={false}
         columns={columns}
         dataSource={dataSource}
+      
         className="isoSimpleTable"
+        
       />
     );
   }

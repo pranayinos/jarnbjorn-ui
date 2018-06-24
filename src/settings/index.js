@@ -4,7 +4,7 @@ export default {
 const siteConfig = {
   siteName: 'dmux',
   siteIcon: 'ion-flash',
-  footerText: 'Isomorphic ©2017 Created by RedQ, Inc'
+  footerText: 'dmux ©2018.  All rights reserved. '
 };
 
 const themeConfig = {
