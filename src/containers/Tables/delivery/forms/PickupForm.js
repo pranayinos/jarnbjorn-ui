@@ -9,7 +9,7 @@ import Form from '../../../../components/uielements/form';
 import Checkbox from '../../../../components/uielements/checkbox';
 import Button from '../../../../components/uielements/button';
 import Notification from '../../../../components/notification';
-import IntlMessages from '../../../../components/utility/intlMessages';
+import LocationSearchInput from '../../../../components/gmaps/locationSearchInput';
 import ContentHolder from '../../../../components/utility/contentHolder';
 import Seperator from '../../../../components/seperator';
 import { rtl } from '../../../../settings/withDirection';
@@ -114,14 +114,15 @@ class PickupForm extends Component {
           </Col>
         </InputGroup>
         <FormItem {...formItemLayout} hasFeedback>
-        {getFieldDecorator('address', {
+        {/* {getFieldDecorator('address', {
                 rules: [
                   {
                     required: true,
                     message: 'Address is required!',
                   },
                 ],
-              })(<Input name="address" id="address" placeholder="Address Line 1" />)}
+              })(<Input name="address" id="address" placeholder="Address Line 1" />)} */}
+              <LocationSearchInput placeholder="Address Line 1"></LocationSearchInput>
         </FormItem>
         <FormItem {...formItemLayout} hasFeedback>
         {getFieldDecorator('streetAddress', {

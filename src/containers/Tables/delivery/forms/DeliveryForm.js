@@ -11,6 +11,7 @@ import Button from '../../../../components/uielements/button';
 import Notification from '../../../../components/notification';
 import IntlMessages from '../../../../components/utility/intlMessages';
 import ContentHolder from '../../../../components/utility/contentHolder';
+import LocationSearchInput from '../../../../components/gmaps/locationSearchInput';
 import Seperator from '../../../../components/seperator';
 import { rtl } from '../../../../settings/withDirection';
 import Upload from '../../../../components/uielements/upload';
@@ -87,37 +88,35 @@ class DeliveryForm extends Component {
       <Form onSubmit={this.handleSubmit}>
         <Seperator title="Deliver To"></Seperator>  
         <FormItem {...formItemLayout} hasFeedback>
-
-          <Input name="phone" id="phone" placeholder="Customer Phone Number" />
-        </FormItem>
-        <InputGroup>
-          <Col span="12">
-            <FormItem {...formItemLayout} hasFeedback>
               {getFieldDecorator('phone', {
-                rules: [
-                  {
-                    type: 'phone',
-                    message: 'The input is not valid phone number!',
-                  },
-                  {
-                    required: true,
-                    message: 'Please input Customer\'s  Phone Number!',
-                  },
-                ],
-              })(<Input name="phone" id="phone" placeholder="Customer Phone Number" />)}
-            </FormItem>
-          </Col>
-          <Col span="12">
-            <Input placeholder="Name" />
-          </Col>
-        </InputGroup>
-        <FormItem {...formItemLayout} hasFeedback>
-
-          <Input name="address" id="address" placeholder="Address Line 1" />
+                  rules: [
+                    {
+                      type: "string",
+                      required: true, pattern: /^[0-9]{10}$/,
+                      message: 'The input is not valid phone number!',
+                    }
+                  ],
+                })(<Input name="phone" id="phone" placeholder="Customer Phone Number" />)}
         </FormItem>
         <FormItem {...formItemLayout} hasFeedback>
 
-          <Input name="streetAddress" id="streetAddress" placeholder="Street Address" />
+              <Input name="name" id="name" placeholder="Customer Name" />
+        </FormItem>
+        <FormItem {...formItemLayout} hasFeedback>
+        <LocationSearchInput placeholder="Address"></LocationSearchInput>
+          {/* <Input name="address" id="address" placeholder="Address" /> */}
+        </FormItem>
+        <FormItem {...formItemLayout} hasFeedback>
+
+          <Input name="streetAddress" id="streetAddress" placeholder="House No./Flat No./Landmark for ease of delivery" />
+        </FormItem>
+        <FormItem {...formItemLayout} hasFeedback>
+
+          <Input name="cashAmount" id="cashAmount" placeholder="Cash to be collected" />
+        </FormItem>
+        <FormItem {...formItemLayout} hasFeedback>
+
+          <Input name="referenceId" id="referenceId" placeholder="Reference ID" />
         </FormItem>
         <FormItem {...formItemLayout} hasFeedback  style={{ marginBottom: 8 }}>
           <Checkbox>

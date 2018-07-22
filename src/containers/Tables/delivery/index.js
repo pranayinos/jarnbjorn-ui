@@ -15,7 +15,7 @@ import IntlMessages from '../../../components/utility/intlMessages';
 import PickupForm from './forms/PickupForm';
 import DeliveryForm from './forms/DeliveryForm';
 import Box from '../../../components/utility/box';
-import ContentHolder from '../../../components/utility/contentHolder';
+import BasicMap from '../../Map/GoogleMap/maps/basic';
 
 const dataList = new delivery(2);
 const FormItem = Form.Item;
@@ -30,7 +30,7 @@ const formItemLayout = {
   }
 };
 
-export default class AntTable extends Component {
+export default class Delivery extends Component {
   renderTable(tableInfo) {
     let Component;
     Component = TableViews.SimpleView;
@@ -53,6 +53,9 @@ export default class AntTable extends Component {
         </Col>
         <Col md={16} sm={16} xs={32} style={colStyle}>
           <LayoutContentWrapper>
+            <Box>
+            <BasicMap></BasicMap>
+            </Box>
             <TableDemoStyle className="isoLayoutContent">
 
               {this.renderTable(tableinfos[0])}
