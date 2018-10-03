@@ -1,6 +1,6 @@
-import * as Constans from '../constants';
-import * as Utils from '../utils';
-import * as Logger from '../logger';
+import * as Constants from '../customApp/constants';
+import * as Utils from '../customApp/Utils';
+import * as Logger from '../customApp/Logger';
 let axios = require('axios');
 
 class BaseApi {
@@ -10,13 +10,13 @@ class BaseApi {
     let status = response.status;
     if(status === 404){
       Logger.warning("Got 404 from server",Utils.convertErrorResponseToLogMessage(response));
-      throw Constans.NOT_FOUND;
+      throw Constants.NOT_FOUND;
     }else if(status === 401){
       Logger.warning("Got 401 from server",Utils.convertErrorResponseToLogMessage(response));
-      throw Constans.UNAUTHORIZED;
+      throw Constants.UNAUTHORIZED;
     }else if(status!==200){
       Logger.warning("Response code not 200",Utils.convertErrorResponseToLogMessage(response));
-      throw Constans.INVALID_RESPONSE;
+      throw Constants.INVALID_RESPONSE;
     }
     let data = response.data;
     if(data.status!=="SUCCESS" && data.errorCode){
@@ -43,13 +43,11 @@ class BaseApi {
 
     if(tokenInfo){
       return {
-              'Authorization': `bearer `+tokenInfo.token,
-              'clientId':tokenInfo.clientId
+              'Authorization': `bearer `+tokenInfo.token
             }
     }
     return {
             'Authorization': `bearer `+Utils.getToken(),
-            'clientId':Utils.getClientId()
           }
   }
 
@@ -59,9 +57,9 @@ class BaseApi {
   static getDefaultRequestOptions(tokenInfo){
     const headers = this.getRequestHeaders(tokenInfo);
     const requestObj = {
-                      baseURL:Constans.BASE_URL_BACKEND,
+                      baseURL:Constants.BASE_URL_BACKEND,
                       headers: headers,
-                      timeout: Constans.API_REQUEST_TIME_OUT_IN_SEC,
+                      timeout: Constants.API_REQUEST_TIME_OUT_IN_SEC,
                       responseType: 'json'
                     };
     return requestObj;
@@ -78,8 +76,9 @@ class BaseApi {
     if(data){
       requestObj.data = data;
     }
-    return this.initiateRequest(requestObj,Constans.RETRY_COUNT_ON_EXPIRY);
+    return this.initiateRequest(requestObj,Constants.RETRY_COUNT_ON_EXPIRY);
   }
+  
   static initiateRequest(requestObj,retryCount){
     return axios.request(requestObj).then(response => {
       this.validateRespose(response);
@@ -88,16 +87,16 @@ class BaseApi {
       this.validateError(error);
     }).catch(error => {
       //Retry the request on token expiry
-      if(retryCount && error===Constans.UNAUTHORIZED){
+      if(retryCount && error===Constants.UNAUTHORIZED){
         Logger.info("User token expired, getting new token");
-        return Utils.getASUITokenInfoPromise().then(response =>{
+        return this.initiateTokenRefresh().then(response =>{
               Utils.saveTokenInfo(response);
               const headers = this.getRequestHeaders();
               requestObj.headers = headers;
               return this.initiateRequest(requestObj);
         });
-      }else if(error===Constans.ERR_TIMED_OUT){
-        Utils.showErrorPage(Constans.ERROR_TYPE.NETWORK_ERROR);
+      }else if(error===Constants.ERR_TIMED_OUT){
+        // Utils.showErrorPage(Constants.ERROR_TYPE.NETWORK_ERROR);
       }else{
         throw error;
       }
@@ -105,6 +104,11 @@ class BaseApi {
       return response;
     });
   }
+
+  static initiateTokenRefresh(){
+    return this.initiateRequestByUrl(Constants.OAUTH_API,Utils.getRefreshToken);
+  }
+
 }
 
 export default BaseApi;

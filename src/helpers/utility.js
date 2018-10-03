@@ -6,8 +6,8 @@ export function clearToken() {
 
 export function getToken() {
   try {
-    const idToken = localStorage.getItem('id_token');
-    return new Map({ idToken });
+    const authToken = localStorage.getItem('id_token');
+    return new Map({ authToken });
   } catch (err) {
     clearToken();
     return new Map();

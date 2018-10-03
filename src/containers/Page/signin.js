@@ -5,11 +5,9 @@ import Input from '../../components/uielements/input';
 import Checkbox from '../../components/uielements/checkbox';
 import Button from '../../components/uielements/button';
 import authAction from '../../redux/auth/actions';
-import Auth0 from '../../helpers/auth0';
-import Firebase from '../../helpers/firebase';
-import FirebaseLogin from '../../components/firebase';
 import IntlMessages from '../../components/utility/intlMessages';
 import SignInStyleWrapper from './signin.style';
+import AuthApi from '../../helpers/oauth/AuthApi';
 
 const { login } = authAction;
 
@@ -26,8 +24,9 @@ class SignIn extends Component {
     }
   }
   handleLogin = () => {
-    const { login } = this.props;
-    login();
+    // const { login } = this.props;
+    AuthApi.authenticateUser("admin", "admin1234");
+    // login();
     this.props.history.push('/dashboard');
   };
   render() {

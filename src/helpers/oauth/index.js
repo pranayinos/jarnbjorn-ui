@@ -1,11 +1,10 @@
-import Auth0Lock from 'auth0-lock';
 import history from './history';
-import { Auth0Config } from '../../settings';
+import { OAuthConfig } from '../../settings';
 import { notification } from '../../components';
+import AuthApi from './AuthApi';
 
-class Auth0Helper {
-  isValid = Auth0Config.clientID && Auth0Config.domain;
-
+class OAuthHelper {
+  isValid = OAuthConfig.clientID && OAuthConfig.basic;
   constructor() {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -13,30 +12,18 @@ class Auth0Helper {
     this.isAuthenticated = this.isAuthenticated.bind(this);
   }
   login(handleLogin) {
-    this.lock = this.isValid
-      ? new Auth0Lock(
-          Auth0Config.clientID,
-          Auth0Config.domain,
-          Auth0Config.options
-        )
-      : null;
-    if (!this.lock) {
-      return;
-    }
-    this.lock.on('authenticated', authResult => {
-      if (authResult && authResult.accessToken) {
+    if (authResult && authResult.accessToken) {
         if (window) {
-          localStorage.setItem('id_token', authResult.accessToken);
+          localStorage.setItem('accessToken', authResult.accessToken);
         }
         handleLogin();
       } else {
         notification('error', 'Wrong mail or password');
       }
-    });
-    this.lock.show();
   }
+  
   handleAuthentication(props) {
-    localStorage.setItem('id_token', 'secret token');
+    localStorage.setItem('authToken', 'secret token');
     history.replace('/dashboard');
   }
   setSession(authResult) {
@@ -68,4 +55,4 @@ class Auth0Helper {
     );
   }
 }
-export default new Auth0Helper();
+export default new OAuthHelper();

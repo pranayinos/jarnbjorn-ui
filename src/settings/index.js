@@ -18,37 +18,9 @@ const AlgoliaSearchConfig = {
   appId: '',
   apiKey: ''
 };
-const Auth0Config = {
-  domain: '',
-  clientID: '',
-  allowedConnections: ['Username-Password-Authentication'],
-  rememberLastLogin: true,
-  language: 'en',
-  closable: true,
-  options: {
-    auth: {
-      autoParseHash: true,
-      redirect: true,
-      redirectUrl: 'http://localhost:3000/auth0loginCallback'
-    },
-    languageDictionary: {
-      title: 'dmux',
-      emailInputPlaceholder: 'demo@gmail.com',
-      passwordInputPlaceholder: 'demodemo'
-    },
-    theme: {
-      labeledSubmitButton: true,
-      logo: '',
-      primaryColor: '#E14615',
-      authButtons: {
-        connectionName: {
-          displayName: 'Log In',
-          primaryColor: '#b7b7b7',
-          foregroundColor: '#000000'
-        }
-      }
-    }
-  }
+const OAuthConfig = {
+  basic: 'amFybmJqb3JuOjdiZjhlMWY0ODg1NDdmYjk3NmM3NDc0YWVhZjBjODA5YWViOTYyYTliYTBlYWIxNTUyYTAyYjFlY2EyMTU1ZWU=',
+  clientID: 'jarnbjorn',
 };
 const firebaseConfig = {
   apiKey: '',
@@ -59,13 +31,13 @@ const firebaseConfig = {
   messagingSenderId: ''
 };
 const googleConfig = {
-  apiKey: '' //
+  apiKey: 'AIzaSyCKn-OmKAQD_89YUfXjOOhEOa4yWIOLaBc' //
 };
 const mapboxConfig = {
   tileLayer: '',
   maxZoom: '',
   defaultZoom: '',
-  center: []
+  center: [28.6139391, 77.2090]
 };
 const youtubeSearchApi = '';
 export {
@@ -73,7 +45,7 @@ export {
   themeConfig,
   language,
   AlgoliaSearchConfig,
-  Auth0Config,
+  OAuthConfig,
   firebaseConfig,
   googleConfig,
   mapboxConfig,

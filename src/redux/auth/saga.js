@@ -10,8 +10,8 @@ export function* loginRequest() {
     if (fakeApiCall) {
       yield put({
         type: actions.LOGIN_SUCCESS,
-        token: 'secret token',
-        profile: 'Profile'
+        authToken: '9084ebce-3990-4550-957d-734827a4bcd1'
+        // profile: 'Profile'
       });
     } else {
       yield put({ type: actions.LOGIN_ERROR });
@@ -21,7 +21,8 @@ export function* loginRequest() {
 
 export function* loginSuccess() {
   yield takeEvery(actions.LOGIN_SUCCESS, function*(payload) {
-    yield localStorage.setItem('id_token', payload.token);
+    yield localStorage.setItem('auth_token', payload.access_token);
+    yield localStorage.setItem('refresh_token', payload.refresh_token);
   });
 }
 
@@ -37,12 +38,12 @@ export function* logout() {
 }
 export function* checkAuthorization() {
   yield takeEvery(actions.CHECK_AUTHORIZATION, function*() {
-    const token = getToken().get('idToken');
+    const token = getToken().get('access_token');
     if (token) {
       yield put({
         type: actions.LOGIN_SUCCESS,
-        token,
-        profile: 'Profile'
+        token
+        // profile: 'Profile'
       });
     }
   });

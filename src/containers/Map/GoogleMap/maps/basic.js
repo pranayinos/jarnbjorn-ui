@@ -9,7 +9,7 @@ class BasicMap extends Component {
     super(props);
     this.loadMap = this.loadMap.bind(this);
     this.state = {
-      center: { lat: 40.78306, lng: -73.971249 }, // 40.783060, -73.971249
+      center: { lat: 28.61393, lng: 77.20902}, // 40.783060, -73.971249
       zoom: 13,
       posts,
       infoWindow: null

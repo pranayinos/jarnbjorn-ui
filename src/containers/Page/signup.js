@@ -5,7 +5,6 @@ import Input from '../../components/uielements/input';
 import Checkbox from '../../components/uielements/checkbox';
 import Button from '../../components/uielements/button';
 import authAction from '../../redux/auth/actions';
-import Auth0 from '../../helpers/auth0/index';
 import Firebase from '../../helpers/firebase';
 import FirebaseLogin from '../../components/firebase';
 import IntlMessages from '../../components/utility/intlMessages';
@@ -85,17 +84,6 @@ class SignUp extends Component {
                 <Button onClick={this.handleLogin} type="primary btnGooglePlus">
                   <IntlMessages id="page.signUpGooglePlus" />
                 </Button>
-                {Auth0.isValid && (
-                  <Button
-                    onClick={() => {
-                      Auth0.login(this.handleLogin);
-                    }}
-                    type="primary btnAuthZero"
-                  >
-                    <IntlMessages id="page.signUpAuth0" />
-                  </Button>
-                )}
-
                 {Firebase.isValid && (
                   <FirebaseLogin signup={true} login={this.handleLogin} />
                 )}
@@ -115,7 +103,7 @@ class SignUp extends Component {
 
 export default connect(
   state => ({
-    isLoggedIn: state.Auth.get('idToken') !== null ? true : false
+    isLoggedIn: state.Auth.get('authToken') !== null ? true : false
   }),
   { login }
 )(SignUp);

@@ -16,8 +16,9 @@ import PickupForm from './forms/PickupForm';
 import DeliveryForm from './forms/DeliveryForm';
 import Box from '../../../components/utility/box';
 import BasicMap from '../../Map/GoogleMap/maps/basic';
+import DeliveryApi from './network/DeliveryApi'
 
-const dataList = new delivery(2);
+let dataList = new delivery(2);
 const FormItem = Form.Item;
 const formItemLayout = {
   labelCol: {
@@ -36,6 +37,12 @@ export default class Delivery extends Component {
     Component = TableViews.SimpleView;
     return <Component tableInfo={tableInfo} dataList={dataList} />;
   }
+
+  componentDidMount (){
+    //this.props.actions.removeAllErrors();
+    dataList = DeliveryApi.getUserDelivery();
+  }
+
   render() {
     const colStyle = {
       marginBottom: '16px'
